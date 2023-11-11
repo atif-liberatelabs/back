@@ -22,13 +22,15 @@ const uri = `mongodb+srv://${process.env.db_USER}:${process.env.db_PASS}@cluster
 console.log(process.env.db_USER);
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
+const client = new MongoClient(uri);
+// {
+// serverApi: {
+//   version: ServerApiVersion.v1,
+//   strict: true,
+//   deprecationErrors: true,
+// },
+// }
+
 // middleware with jwt
 // const logger = (req, res, next) => {
 //   console.log('log: info', req.method, req.url);
@@ -53,7 +55,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
     const popularservicecollection = client
       .db("Career_Maker")
       .collection("popular_services");
